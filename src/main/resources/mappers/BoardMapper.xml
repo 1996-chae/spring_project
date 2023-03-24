@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jafa.repository.BoardRepository">
+	
+	<sql id="condition">
+		<trim prefix="and">
+			<choose>
+					<when test="type=='T'.toString()">
+						TITLE like '%'||#{keyword}||'%'	
+					</when>
+					<when test="type=='C'.toString()">
+						CONTENT like '%'||#{keyword}||'%'
+					</when>
+					<when test="type=='TC'.toString()">
+						TITLE||CONTENT like '%'||#{keyword}||'%'	
+					</when>
+					<when test="type=='W'.toString()">
+						ID||NICKNAME like '%'||#{keyword}||'%'	
+					</when>
+			</choose>
+		</trim>
+		<if test="category!=null and category!=''">
+			and WRITETYPE = #{category}
+		</if>	
+	</sql>
+	
+	<select id="list" resultType="boardVO">
+		<![CDATA[
+		select 
+			RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE 
+		from
+		(select 
+			/*+INDEX_DESC(board_book PK_board_book)*/ 
+			ROWNUM AS RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE
+		from board_book where rownum <= #{maxRow}
+		]]>
+		<include refid="condition"/>
+		<![CDATA[
+		) where rn > #{minRow}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from board_book 
+		<where>
+			<include refid="condition"/>
+		</where>
+	</select>
+	
+	<select id="detail" resultType="boardVO">
+		select * from board_book where bno=#{bno}
+	</select>
+	
+	<select id="allType" resultType="String">
+		select distinct(WRITETYPE) FROM board_book
+	</select>
+	
+	<insert id="insertBoard" useGeneratedKeys="true" keyColumn="bno" keyProperty="bno">	
+		insert into board_book 
+		(BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME)
+		 VALUES (board_book_seq.nextval, #{writeType}, #{title}, #{content}, #{id}, #{nickname})
+	</insert>
+	
+    <update id="updateAttachFileCnt">
+    	update board_book
+    	set
+    		attachFileCnt = (select count(bno) from attach_file where bno=#{bno})
+    	where bno = #{bno} 
+    </update>
+	
+	<update id="modify">
+    	update board_book 
+    	set
+    		WRITETYPE = #{writeType},
+    		title = #{title}, 
+    		content = #{content}
+    	where
+    		bno = #{bno} 
+    </update>
+	
+	<delete id="delete">
+		DELETE board_book where bno=#{bno}
+	</delete>
+	
+</mapper>

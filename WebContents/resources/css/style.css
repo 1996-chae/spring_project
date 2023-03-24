@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body {background: #808080;}
+p {
+	color: white;
+	-webkit-text-stroke: 1px #000000;
+	font-weight: bold;
+	padding: 30px;
+	}
+.container {background: #c0c0c0;}

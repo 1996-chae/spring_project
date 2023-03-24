@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jafa.repository.MemberRepository">
+	
+	<resultMap type="com.jafa.domain.MemberVO" id="memberMap">
+		<result property="mno" column="mno"/>
+		<result property="id" column="id"/>
+		<result property="pwd" column="pwd"/>
+		<result property="nickname" column="nickname"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+		<result property="enabled" column="enabled"/>
+		<result property="joinDate" column="joinDate"/>
+		<collection property="authList" 
+			column="id" 
+			javaType="java.util.ArrayList" 
+			ofType="com.jafa.domain.AuthVO"
+			select="getAuthList"/>
+	</resultMap>
+	
+	<insert id="save">
+		INSERT INTO MEMBER_book_sec(MNO,ID,PWD,NICKNAME,NAME,EMAIL) 
+		VALUES (MEMBER_book_sec_seq.nextval,#{id},#{pwd},#{nickname},#{name},#{email})
+	</insert>
+	
+	<select id="read" resultMap="memberMap">
+		SELECT * FROM MEMBER_book_sec WHERE id = #{id}
+	</select>
+	
+	<select id="getAuthList" resultType="com.jafa.domain.AuthVO">
+		select * from member_auth where id=#{id} order by ordinal
+	</select>
+	
+	<select id="memberList" resultMap="memberMap">
+		select * from MEMBER_book_sec
+	</select>
+	
+</mapper>

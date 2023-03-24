@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.jafa.repository.ReplyRepository">
+	  
+    <select id="list" resultType="com.jafa.domain.ReplyVO">
+    	select * from reply_book where bno=#{bno}
+    </select>
+    
+    <insert id="add">
+    	insert into reply_book (rno,bno,reply,ID, NICKNAME)
+		values(seq_reply_book.nextval, #{bno}, #{reply}, #{id}, #{nickname});
+    </insert>
+    
+    <delete id="remove">
+    	delete from reply_book where rno=#{rno}
+    </delete>
+	
+	<delete id="delete">
+		DELETE reply_book where bno=#{bno}
+	</delete>
+	
+</mapper>
