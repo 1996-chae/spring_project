@@ -1,4 +1,6 @@
 console.log('board/detail.js');
+
+// 게시판 작업
 $(function(){
 	
 	let category = new URLSearchParams(location.search).get('category');
@@ -69,5 +71,38 @@ $(function(){
 			.appendTo('body')
 			.submit();
 		
+	});
+})
+
+// 댓글 작업
+$(function(){
+	let bno = $('input[name="bno"]').val();
+	// 댓글 목록 
+	replyService.list(bno);
+	
+	// 댓글 쓰기
+	$('.reply_write').on('click',function(){
+		let reply = $('.reply_content').val();
+		let replyVO = {
+			bno : bno, 
+			reply : reply, 
+			id : auth.id,
+			nickname : auth.nickname
+		}
+		replyService.write(replyVO);
+		replyService.list(bno);
+	});
+	
+	// 수정 버튼 이벤트
+	$('.replyList').on('click','.reply_modBtn',function(){
+		let rno = $(this).closest('div').data('rno');
+		replyService.modify(rno);
+	});
+	
+	// 삭제 버튼 이벤트
+	$('.replyList').on('click','.reply_delBtn',function(){
+		let rno = $(this).closest('div').data('rno');
+		replyService.remove(rno,bno);
+		replyService.list(bno);
 	});
 })

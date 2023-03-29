@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 <script src="${contextPath}/resources/js/board/detail.js"></script>
+<script src="${contextPath}/resources/js/board/replyService.js"></script>
 
-<div class="container">
+<div class=container>
 	<div class="jumbotron">
 		<h1>글상세</h1>
 	</div>
@@ -97,6 +98,10 @@
 		</table>
 	</form>
 	<div class="replyList card">
+		<ul>댓글 생성</ul>
+	</div>
+	<!-- 
+	<div class="replyList card">
 		<c:forEach items="${replyList}" var="reply">
 			<ul class="card-header">
 				${reply.nickname}
@@ -117,6 +122,7 @@
 			</ul>
 		</c:forEach>
 	</div>
+	 -->
 </div>
 
 

@@ -6,7 +6,8 @@
 	<div class="jumbotron">
 		<h1>모든사용자</h1>
 	</div>
-	
+	<h1>${time1.time}</h1>
+	<h1>${time2}</h1>
 </div>
 <%@ include file="../layout/footer.jsp" %>
 

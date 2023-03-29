@@ -18,9 +18,11 @@ public interface BoardRepository {
 	void insertBoard(BoardVO vo);
 
 	void updateAttachFileCnt(Long bno);
+	void updateReplyCnt(Long bno);
 
 	void delete(Long bno);
 
 	void modify(BoardVO vo);
+
 	
 }

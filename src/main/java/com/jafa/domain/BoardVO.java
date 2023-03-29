@@ -22,5 +22,9 @@ public class BoardVO {
 	private String id;
 	private String nickname;
 	private Date writeDate;
+	private Integer hitsCnt; // 조회 개수
+	private Integer replyCnt; // 댓글 개수
+	private Integer likeCnt; // 좋아요 개수
 	private Integer attachFileCnt; // 첨부파일 개수
+	
 }

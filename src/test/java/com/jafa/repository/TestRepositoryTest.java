@@ -12,7 +12,11 @@ public class TestRepositoryTest extends AppTest {
 
 	@Test
 	public void test() {
-		System.out.println(testRepository.getCurrentDate());
+		System.out.println("=======================");
+		System.out.println(testRepository.getDate1());
+		System.out.println("=======================");
+		System.out.println(testRepository.getDate2());
+		System.out.println("=======================");
 	}
 
 }

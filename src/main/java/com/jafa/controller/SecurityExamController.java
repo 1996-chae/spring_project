@@ -1,9 +1,9 @@
 package com.jafa.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,15 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.AuthListDTO;
 import com.jafa.domain.AuthVO;
-import com.jafa.domain.MemberDetail;
 import com.jafa.domain.MemberGrade;
 import com.jafa.domain.MemberVO;
+import com.jafa.repository.TestRepository;
 import com.jafa.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
@@ -34,9 +32,18 @@ public class SecurityExamController {
 	@Autowired
 	MemberService memberService; 
 	
+	@Autowired
+	TestRepository testRepository;
+	
 	@GetMapping("/all")
-	public void doAll() {
+	public void doAll(Model model) {
 		log.info("모두 접근 허용");
+		Date date1 = testRepository.getDate1();
+		Date date2 = testRepository.getDate2();
+		System.out.println(date1);
+		System.out.println(date2);
+		model.addAttribute("time1", date1);
+		model.addAttribute("time2", date2);
 	}
 	
 	@GetMapping("/accessError")
@@ -84,8 +91,9 @@ public class SecurityExamController {
 	}
 	
 	// 회원가입폼
+	@PreAuthorize("isAnonymous()")
 	@GetMapping("/join")
-	public void joinForm() {
+	public void join() {
 		
 	}
 	

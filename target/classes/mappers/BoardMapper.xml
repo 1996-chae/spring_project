@@ -30,11 +30,11 @@
 	<select id="list" resultType="boardVO">
 		<![CDATA[
 		select 
-			RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE 
+			RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE, attachFileCnt, hitsCnt, likeCnt, replyCnt
 		from
 		(select 
 			/*+INDEX_DESC(board_book PK_board_book)*/ 
-			ROWNUM AS RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE
+			ROWNUM AS RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE, attachFileCnt, hitsCnt, likeCnt, replyCnt
 		from board_book where rownum <= #{maxRow}
 		]]>
 		<include refid="condition"/>

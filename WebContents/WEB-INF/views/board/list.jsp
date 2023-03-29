@@ -42,7 +42,7 @@
 			<th>글쓴이</th>
 			<th>날짜</th>
 			<th>조회</th>
-			<th>댓글</th>
+			<th>추천</th>
 		</tr>
 		<c:forEach items="${list}" var="b">
 		<tr>
@@ -51,13 +51,20 @@
 			</td>
 			<td>
 				<a href="${b.bno}" class="title">
-				${b.title } 
+					${b.title }  
+					<c:if test="${b.replyCnt > 0}">
+						[${b.replyCnt}]
+					</c:if>
+					<c:if test="${b.attachFileCnt > 0}">
+					<img alt="파일존재" src="${contextPath}/resources/images/imagefileicon.png" height="15" width="15">
+					</c:if>
 				 </a>
 			</td>
 			<td>${b.nickname }</td>
-			<td>${b.writeDate }</td>
-			<td>추가 예정</td>
-			<td>추가 예정</td>
+			<td>${b.writeDate.month}월 ${b.writeDate.date}일
+			${b.writeDate.hours}:${b.writeDate.minutes}</td>
+			<td>${b.hitsCnt}</td>
+			<td>${b.likeCnt}</td>
 		</tr>
 		</c:forEach>
 	</table>

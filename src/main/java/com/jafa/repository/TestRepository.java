@@ -4,5 +4,7 @@ import java.util.Date;
 
 public interface TestRepository {
 	
-	Date getCurrentDate();
+	Date getDate1();
+	
+	Date getDate2();
 }

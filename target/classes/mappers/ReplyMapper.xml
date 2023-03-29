@@ -9,13 +9,20 @@
     	select * from reply_book where bno=#{bno}
     </select>
     
-    <insert id="add">
+    <insert id="write">
     	insert into reply_book (rno,bno,reply,ID, NICKNAME)
 		values(seq_reply_book.nextval, #{bno}, #{reply}, #{id}, #{nickname});
     </insert>
     
+    <update id="modify">
+    	update reply_book
+    	set
+    		reply = #{reply}
+    	where rno = #{rno} 
+    </update>
+    
     <delete id="remove">
-    	delete from reply_book where rno=#{rno}
+    	delete reply_book where rno=#{rno}
     </delete>
 	
 	<delete id="delete">

@@ -72,10 +72,6 @@ public class BoardService {
 		return attachRepository.list(bno);
 	}
 
-	public List<ReplyVO> replyList(Long bno) {
-		return replyRepository.list(bno);
-	}
-
 	// 수정
 	@Transactional
 	public void modify(BoardVO vo, List<Long> delFileList, MultipartFile[] multipartFiles) {

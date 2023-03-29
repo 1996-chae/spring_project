@@ -5,8 +5,11 @@
   
 <mapper namespace="com.jafa.repository.TestRepository">
 
-  <select id="getCurrentDate" resultType="java.util.Date">
-    select sysdate from dual 
-  </select>
-  
+	<select id="getDate1" resultType="java.util.Date">
+		select SYSTIMESTAMP from dual 
+	</select>
+	
+	<select id="getDate2" resultType="java.util.Date">
+		select sysdate from dual 
+	</select>
 </mapper>
