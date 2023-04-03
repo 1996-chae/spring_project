@@ -70,6 +70,12 @@
     		attachFileCnt = (select count(bno) from attach_file where bno=#{bno})
     	where bno = #{bno} 
     </update>
+    <update id="updateReplyCnt">
+    	update board_book
+    	set
+    		replyCnt = (select count(bno) from reply_book where bno=#{bno})
+    	where bno = #{bno} 
+    </update>
 	
 	<update id="modify">
     	update board_book 

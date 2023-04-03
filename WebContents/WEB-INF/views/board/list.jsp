@@ -7,34 +7,39 @@
 	<div class="jumbotron">
 		<h1>게시판</h1>
 	</div>
-	
-	<form class="form-inline searchForm">
-		<div class="from-group">
-			<ul class="category d-flex justify-content-center">
-				<li class="page-item ${cri.category=='' or cri.category==null ? 'active' : ''}">
-					<a class="page-link writeType" href="${contextPath }/board/list">전체</a>
-				</li>
-				<c:forEach items="${typeAll}" var="t">
-				<li class="page-item ${t==cri.category ? 'active' : ''}">
-					<a class="page-link writeType" href="${contextPath }/board/list?category=${t}">${t}</a>
-				 </li>
-				 </c:forEach>
-			</ul>
+	<div class="row">
+		<div class="col-sm-7">
+			<form class="form-inline justify-content-center">
+				<div class="from-group">
+					<ul class="category list-group list-group-horizontal justify-content-center">
+						<li class="list-group-item ${cri.category=='' or cri.category==null ? 'active' : ''}">
+							<a class="writeType" href="${contextPath}/board/list" rel="">전체</a>
+						</li>
+						<c:forEach items="${typeAll}" var="t">
+						<li class="list-group-item ${t==cri.category ? 'active' : ''}">
+							<a class="writeType" href="${contextPath}/board/list?category=${t}">${t}</a>
+						</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</form>
 		</div>
-		<div class="form-group">
-		<select class="form-control" name="type">
-			<option value="T" >제목</option>
-			<option value="C" ${cri.type=='C' ? 'selected':''}>내용</option>
-			<option value="TC" ${cri.type=='TC' ? 'selected':''}>제목+내용</option>
-			<option value="W" ${cri.type=='W' ? 'selected':''}>작성자</option>
-		</select>
+		<div class="col-sm-5">
+			<form class="form-inline justify-content-end searchForm">
+				<select class="form-control mr-sm-2" name="type">
+					<option value="T" >제목</option>
+					<option value="C" ${cri.type=='C' ? 'selected':''}>내용</option>
+					<option value="TC" ${cri.type=='TC' ? 'selected':''}>제목+내용</option>
+					<option value="W" ${cri.type=='W' ? 'selected':''}>작성자</option>
+				</select>
+				<input type="text" class="form-control mr-sm-2" name="keyword" value="${cri.keyword}" placeholder="검색어" pattern="[1-9]{6}" >
+				<button class="btn btn-primary">검색</button>
+			</form>
 		</div>
-		<div class="form-group">
-			<input type="search" class="form-control" name="keyword" value="${cri.keyword}">
-		</div>
-		<button class="btn btn-primary">검색</button>
-	</form>
-	<a href="${contextPath}/board/write">글쓰기</a>
+	</div>
+	<ul class="nav justify-content-end">
+		<a href="${contextPath}/board/write">글쓰기</a>
+	</ul>
 	<table class="table">
 		<tr>
 			<th>분류</th>
@@ -68,8 +73,9 @@
 		</tr>
 		</c:forEach>
 	</table>
+		
 	
-	<ul class="pagination">
+	<ul class="pagination d-flex justify-content-center">
 		<c:if test="${p.prev}">
 		<li class="page-item">
 			<a class="page-link" href="${p.startPage-1}">이전페이지</a>

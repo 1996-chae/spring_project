@@ -3,9 +3,6 @@ console.log('board/detail.js');
 // 게시판 작업
 $(function(){
 	
-	let category = new URLSearchParams(location.search).get('category');
-	let type = new URLSearchParams(location.search).get('type');
-	let keyword = new URLSearchParams(location.search).get('keyword');
 	let page = new URLSearchParams(location.search).get('page');
 	
 	// 수정하기
@@ -40,7 +37,83 @@ $(function(){
 			form.attr('action',`${contextPath}/board/list`);
 		}
 		
-		if (category!=null && category!="") {
+		setCriteria(form);
+		
+		form.attr('method','get')
+			.appendTo('body')
+			.submit();
+		
+	});
+	
+	// 목록으로 돌아가기
+	$('.toList').on('click',function(e){
+		e.preventDefault();
+		
+		let form = $('<form/>');
+		
+		if(page != null){
+			form.attr('action',`${contextPath}/board/list/${page}`);
+		} else {
+			form.attr('action',`${contextPath}/board/list`);
+		}
+		
+		setCriteria(form);
+		
+		form.attr('method','get')
+			.appendTo('body')
+			.submit();
+		
+	});
+	
+	// 목록으로 돌아가기
+	$('.toList').on('click',function(e){
+		e.preventDefault();
+		
+		let form = $('<form/>');
+		
+		if(page != null){
+			form.attr('action',`${contextPath}/board/list/${page}`);
+		} else {
+			form.attr('action',`${contextPath}/board/list`);
+		}
+		
+		setCriteria(form);
+		
+		form.attr('method','get')
+			.appendTo('body')
+			.submit();
+	});
+	
+	// 목록으로 돌아가기
+	$('.toList').on('click',function(e){
+		e.preventDefault();
+		
+		let form = $('<form/>');
+		
+		if(page != null){
+			form.attr('action',`${contextPath}/board/list/${page}`);
+		} else {
+			form.attr('action',`${contextPath}/board/list`);
+		}
+		
+		setCriteria(form);
+		
+		form.attr('method','get')
+			.appendTo('body')
+			.submit();
+	});
+	
+	
+})
+
+// criteria param 세팅
+function setCriteria(form) {
+
+	let category = new URLSearchParams(location.search).get('category');
+	let type = new URLSearchParams(location.search).get('type');
+	let keyword = new URLSearchParams(location.search).get('keyword');
+	
+	if (category!=null && category!="") {
 			let categoryInput = $('<input/>',{
 				type : 'hidden',
 				name : 'category',
@@ -66,43 +139,64 @@ $(function(){
 			});
 			form.append(keywordInput);
 		}
-		
-		form.attr('method','get')
-			.appendTo('body')
-			.submit();
-		
-	});
-})
+}
+	
 
 // 댓글 작업
 $(function(){
 	let bno = $('input[name="bno"]').val();
+	
 	// 댓글 목록 
 	replyService.list(bno);
-	
+
+	// 댓글 새로고침
+	$('.reply_rewind').on('click',function(){
+		replyService.list(bno);
+	});
+
 	// 댓글 쓰기
 	$('.reply_write').on('click',function(){
+	
 		let reply = $('.reply_content').val();
 		let replyVO = {
-			bno : bno, 
+			bno : bno,
 			reply : reply, 
-			id : auth.id,
-			nickname : auth.nickname
 		}
 		replyService.write(replyVO);
-		replyService.list(bno);
 	});
 	
 	// 수정 버튼 이벤트
 	$('.replyList').on('click','.reply_modBtn',function(){
+		
 		let rno = $(this).closest('div').data('rno');
-		replyService.modify(rno);
+		replyService.modifyForm(rno);
+		
+	});
+	
+	// 댓글 수정 완료
+	$('.replyList').on('click','.reply_modify_write',function(){
+		let rno = $(this).closest('div').data('rno');
+		let id = $(this).closest('div').data('id');
+		let reply = $('.reply_modify_content').val();
+		
+		let replyVO = {
+			bno : bno,
+			rno : rno,
+			id : id, 
+			reply : reply,
+		}
+		replyService.modify(replyVO);
 	});
 	
 	// 삭제 버튼 이벤트
 	$('.replyList').on('click','.reply_delBtn',function(){
 		let rno = $(this).closest('div').data('rno');
-		replyService.remove(rno,bno);
-		replyService.list(bno);
+		let id = $(this).closest('div').data('id');
+		let replyVO = {
+			bno : bno,
+			rno : rno,
+			id : id,
+		}
+		replyService.remove(replyVO);
 	});
 })

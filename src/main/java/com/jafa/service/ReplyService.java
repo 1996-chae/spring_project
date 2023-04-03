@@ -30,7 +30,6 @@ public class ReplyService {
 		boardRepository.updateReplyCnt(vo.getBno());
 	}
 
-	@Transactional
 	public void modify(ReplyVO vo) {
 		replyRepository.modify(vo);
 	}

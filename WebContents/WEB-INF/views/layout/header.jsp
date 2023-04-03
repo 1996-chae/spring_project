@@ -16,9 +16,9 @@
 
 <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
 
+<meta name="_csrf_token" content="${_csrf.token}"/>
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <meta name="_csrf_parameter" content="${_csrf.parameterName}"/>
-<meta name="_csrf_token" content="${_csrf.token}"/>
 
 <script>
 	const contextPath = "${contextPath}";
@@ -45,9 +45,10 @@
 					onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호 입력'">
 					<button class="btn btn-success user_login">로그인</button>
 					<input type="checkbox" name="remember-me">로그인 유지
-					<b><a href="${contextPath}/member/join">회원가입</a></b>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</form>
+				<a class="border" href="${contextPath}/member/join"><b>회원가입</b></a>
+				<a class="border" href="${contextPath}/member/join"><b>아이디ㆍ비밀번호 찾기</b></a>
 			</li>
 		</c:if>
 		</sec:authorize>
@@ -55,9 +56,7 @@
 		<sec:authorize access="isAuthenticated()"> <!-- 권한이 있는 경우  -->
 			<li class="nav-item">
 				<!-- 로그인 정보-->
-				<sec:authentication property="principal.memberVO.nickname" var="now_login_id" />
-				<input type="hidden" name="now_login_id" value="${now_login_id}">
-				${now_login_id}님
+				<sec:authentication property="principal.memberVO.nickname"/>님
 			</li>
 			<li class="nav-item dropdown">
 				<form class="user_form"> <!-- 기본값 : /logout -->
