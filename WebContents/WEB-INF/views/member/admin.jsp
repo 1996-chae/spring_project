@@ -3,8 +3,9 @@
 <%@ include file="../layout/header.jsp" %>
 
 <div class="container">
+	
 	<div class="jumbotron">
-		<h1>관리자 페이지</h1>
+		<h1>관리자모드</h1>
 	</div>
 	
 	<form action="${contextPath}/member/upadteMemberType" method="post">

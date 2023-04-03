@@ -5,9 +5,6 @@
 <script src="${contextPath}/resources/js/board/replyService.js"></script>
 
 <div class=container>
-	<div class="jumbotron">
-		<h1>글상세</h1>
-	</div>
 	<form id="viewForm">
 	<table class="table">
 		<tr>

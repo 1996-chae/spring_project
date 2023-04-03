@@ -5,7 +5,10 @@ p {
 	color: #000040;
 }
 a {
-	color: #444444;
+	color: #000000;
+}
+.navbar-brand {
+	color: black;
 }
 img {
  width : 100; 

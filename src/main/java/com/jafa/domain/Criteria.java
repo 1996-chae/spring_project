@@ -18,7 +18,7 @@ public class Criteria {
 	private String keyword;
 	
 	public Criteria() {
-		this(1,10);
+		this(1,30);
 		System.out.println("Criteria!!!");
 	}
 

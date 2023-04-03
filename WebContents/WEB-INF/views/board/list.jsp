@@ -4,39 +4,30 @@
 <script src="${contextPath}/resources/js/board/list.js"></script>
 
 <div class="container">
-	<div class="jumbotron">
-		<h1>게시판</h1>
-	</div>
-	<div class="row">
-		<div class="col-sm-7">
-			<form class="form-inline justify-content-center">
-				<div class="from-group">
-					<ul class="category list-group list-group-horizontal justify-content-center">
-						<li class="list-group-item ${cri.category=='' or cri.category==null ? 'active' : ''}">
-							<a class="writeType" href="${contextPath}/board/list" rel="">전체</a>
-						</li>
-						<c:forEach items="${typeAll}" var="t">
-						<li class="list-group-item ${t==cri.category ? 'active' : ''}">
-							<a class="writeType" href="${contextPath}/board/list?category=${t}">${t}</a>
-						</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</form>
+	<form class="form-inline justify-content-center">
+		<div class="from-group">
+			<ul class="category list-group list-group-horizontal justify-content-center">
+				<li class="list-group-item ${cri.category=='' or cri.category==null ? 'active' : ''}">
+					<a class="writeType" href="${contextPath}/board/list" rel="">전체</a>
+				</li>
+				<c:forEach items="${typeAll}" var="t">
+				<li class="list-group-item ${t==cri.category ? 'active' : ''}">
+					<a class="writeType" href="${contextPath}/board/list?category=${t}">${t}</a>
+				</li>
+				</c:forEach>
+			</ul>
 		</div>
-		<div class="col-sm-5">
-			<form class="form-inline justify-content-end searchForm">
-				<select class="form-control mr-sm-2" name="type">
-					<option value="T" >제목</option>
-					<option value="C" ${cri.type=='C' ? 'selected':''}>내용</option>
-					<option value="TC" ${cri.type=='TC' ? 'selected':''}>제목+내용</option>
-					<option value="W" ${cri.type=='W' ? 'selected':''}>작성자</option>
-				</select>
-				<input type="text" class="form-control mr-sm-2" name="keyword" value="${cri.keyword}" placeholder="검색어" pattern="[1-9]{6}" >
-				<button class="btn btn-primary">검색</button>
-			</form>
-		</div>
-	</div>
+	</form>
+	<form class="form-inline justify-content-end searchForm">
+		<select class="form-control mr-sm-2" name="type">
+			<option value="T" >제목</option>
+			<option value="C" ${cri.type=='C' ? 'selected':''}>내용</option>
+			<option value="TC" ${cri.type=='TC' ? 'selected':''}>제목+내용</option>
+			<option value="W" ${cri.type=='W' ? 'selected':''}>작성자</option>
+		</select>
+		<input type="text" class="form-control mr-sm-2" name="keyword" value="${cri.keyword}" placeholder="검색어" pattern="[1-9]{6}" >
+		<button class="btn btn-primary">검색</button>
+	</form>
 	<ul class="nav justify-content-end">
 		<a href="${contextPath}/board/write">글쓰기</a>
 	</ul>

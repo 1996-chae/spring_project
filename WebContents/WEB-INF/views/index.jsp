@@ -5,10 +5,6 @@
 <div class="container">
 	<h1>메인</h1>
 	<div>
-		<a href="${contextPath}/board/list">게시판 가기</a>
-		<a href="${contextPath}/game/baseball">야구 게임 가기</a>
-	</div>
-	<div>
 		<sec:authorize access="isAnonymous()"><!-- 권한이 없는 경우  -->
 			<a href="${contextPath}/member/join">회원가입</a><br>
 			<a href="${contextPath}/member/login">로그인</a><br>
@@ -20,7 +16,7 @@
 			<spring:message code="main.greeting"  arguments="${u_nickname},${welcome}"/>
 			<form action="${contextPath}/member/logout" method="post"> <!-- 기본값 : /logout -->
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-				<button class="btn btn-primary">로그아웃</button>
+				<button class="btn btn-primary user_logout">로그아웃</button>
 			</form>
 		</sec:authorize>
 		<a href="${contextPath}/member/all">모든 사용자 접근 가능</a><br>

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>서  향  림</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -27,11 +27,12 @@
 
 
 <nav class="container">
-	<ul class="nav justify-content-center">
+	<div class="text-center">
 		<a class="navbar-brand" href="${contextPath}">
-			<h2>서향림</h2>
+			<h1>서향림</h1>
+			<h6>커뮤니티 놀이 사이트</h6>
 		</a>
-	</ul>
+	</div>
 	<ul class="nav justify-content-end">
 		
 		<sec:authorize access="isAnonymous()"><!-- 권한이 없는 경우  -->
@@ -47,8 +48,10 @@
 					<input type="checkbox" name="remember-me">로그인 유지
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				</form>
+				<div class="text-right">
 				<a class="border" href="${contextPath}/member/join"><b>회원가입</b></a>
 				<a class="border" href="${contextPath}/member/join"><b>아이디ㆍ비밀번호 찾기</b></a>
+				</div>
 			</li>
 		</c:if>
 		</sec:authorize>
@@ -79,21 +82,22 @@
 			</li>
 		</sec:authorize>
 	</ul>
-	<ul class="nav nav-tabs nav-justified">
+</nav>
+<div class="container">
+	<ul class="nav nav-taps nav-justified border">
 		<li class="nav-item">
 			<a class="nav-link" href="${contextPath}/board/list">게시판</a>
 		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="${contextPath}/board/list">게시판2</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="${contextPath}/board/list">게시판3</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="${contextPath}/board/list">게시판4</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">게임</a>
+	    	<div class="dropdown-menu">
+		      	<a class="dropdown-item" href="${contextPath}/game/baseball">야구 게임</a>
+		      	<a class="dropdown-item" href="#">미정</a>
+		      	<a class="dropdown-item" href="#">미정</a>
+	    	</div>
 		</li>
 	</ul>
-</nav>
+</div>
 
 </head>
 <body>

@@ -5,9 +5,6 @@
 <script src="${contextPath}/resources/js/board/modify.js"></script>
 
 <div class="container">
-	<div class="jumbotron">
-		<h2>첨부파일 여러개 업로드</h2>
-	</div>
 	
 	<form class="modBoardForm" action="${contextPath}/board/modify?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		

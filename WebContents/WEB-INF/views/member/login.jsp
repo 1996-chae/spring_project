@@ -5,7 +5,7 @@
 
 
 <div class="container">
-	${returnUrl}
+	<!-- ${returnUrl} -->
 	<div class="jumbotron">
 		<h2>회원 로그인</h2>
 	</div>

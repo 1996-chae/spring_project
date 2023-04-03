@@ -4,9 +4,6 @@
 <script src="${contextPath}/resources/js/board/write.js"></script>
 
 <div class="container">
-	<div class="jumbotron">
-		<h1>글작성</h1>	
-	</div>
 	
 	<form class="write_form" action="${contextPath}/board/write?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 		
