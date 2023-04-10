@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import com.jafa.domain.BaseballGameVO;
 import com.jafa.model.BaseballModel;
 
-import lombok.AllArgsConstructor;
-
 @Service
 public class GameService {
 	

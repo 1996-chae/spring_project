@@ -22,9 +22,11 @@ public class BaseballModel {
         vo.setResults(results);
         if (strikes == vo.getNUMBER_LENGTH()) {
             vo.setGameOver(true);
+            return vo;
         } else if (vo.getRound() == vo.getMAX_ROUNDS()) {
         	vo.setGameOver(true);
             results.add("게임 오버. 정답은 " + vo.getAnswer() + "입니다.");
+            return vo;
         }
         vo.setRound(vo.getRound()+1);
         return vo;
