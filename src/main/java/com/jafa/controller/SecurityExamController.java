@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.AuthListDTO;
@@ -94,7 +97,18 @@ public class SecurityExamController {
 	@PreAuthorize("isAnonymous()")
 	@GetMapping("/join")
 	public void join() {
-		
+	}
+	
+	@RequestMapping(value = "idCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(String id) {
+		return memberService.idCheck(id);
+	}
+	
+	@RequestMapping(value = "nickCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int nickCheck(String nickname) {
+		return memberService.nickCheck(nickname);
 	}
 	
 	//회원가입처리

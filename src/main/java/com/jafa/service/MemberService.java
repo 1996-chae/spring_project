@@ -39,6 +39,13 @@ public class MemberService {
 		authRepository.save(authVO);
 	}
 	
+	public int idCheck(String id) {
+		return memberRepository.idCheck(id);
+	}
+	public int nickCheck(String nickname) {
+		return memberRepository.nickCheck(nickname);
+	}
+	
 	// 회원 등급변경 
 	@Transactional
 	public void updateMemberType(AuthVO authVO) {
@@ -58,4 +65,6 @@ public class MemberService {
 	public List<MemberVO> memberList() {
 		return memberRepository.memberList();
 	}
+
+
 }

@@ -30,6 +30,13 @@
 		SELECT * FROM MEMBER_book_sec WHERE id = #{id}
 	</select>
 	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER_book_sec WHERE id = #{id}
+	</select>
+	<select id="nickCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER_book_sec WHERE nickname = #{nickname}
+	</select>
+	
 	<select id="getAuthList" resultType="com.jafa.domain.AuthVO">
 		select * from member_auth where id=#{id} order by ordinal
 	</select>

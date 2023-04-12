@@ -10,7 +10,11 @@ public interface MemberRepository {
 
 	void save(MemberVO vo);
 
+	int idCheck(String id);
+	int nickCheck(String nickname);
+	
 	List<MemberVO> memberList();
+
 	
 }
 
