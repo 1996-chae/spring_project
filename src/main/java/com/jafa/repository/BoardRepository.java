@@ -11,6 +11,7 @@ public interface BoardRepository {
 	
 	int getTotalCount(Criteria criteria);
 
+	void updateHit(Long bno);
 	BoardVO detail(Long bno);
 
 	List<String> allType();
@@ -23,6 +24,7 @@ public interface BoardRepository {
 	void delete(Long bno);
 
 	void modify(BoardVO vo);
+
 
 	
 }

@@ -30,12 +30,32 @@
 	<select id="list" resultType="boardVO">
 		<![CDATA[
 		select 
-			RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE, attachFileCnt, hitsCnt, likeCnt, replyCnt
+			RN, BNO, WRITETYPE, TITLE,
+			CASE 
+				WHEN LENGTH(TITLE) > 10 THEN SUBSTR(TITLE, 1, 10) || '...'
+				ELSE TITLE END 
+				AS SHORT_TI
+			, CONTENT, ID, NICKNAME, WRITEDATE, attachFileCnt, hitsCnt, likeCnt, replyCnt
 		from
-		(select 
-			/*+INDEX_DESC(board_book PK_board_book)*/ 
-			ROWNUM AS RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE, attachFileCnt, hitsCnt, likeCnt, replyCnt
-		from board_book where rownum <= #{maxRow}
+			(select 
+				/*+INDEX_DESC(board_book PK_board_book)*/ 
+				ROWNUM AS RN, BNO, WRITETYPE, TITLE, CONTENT, ID, NICKNAME, WRITEDATE, attachFileCnt, hitsCnt, likeCnt, replyCnt
+			from 
+		]]>
+			<choose>
+				<when test="sequence=='hitsCnt'">
+					(select * from board_book order by hitsCnt DESC) 
+				</when>
+				<when test="sequence=='likeCnt'">
+					(select * from board_book order by likeCnt DESC) 
+				</when>
+				<when test="sequence==null">
+					board_book 
+				</when>
+			</choose>
+		<![CDATA[
+			where 
+				rownum <= #{maxRow}
 		]]>
 		<include refid="condition"/>
 		<![CDATA[
@@ -53,6 +73,12 @@
 	<select id="detail" resultType="boardVO">
 		select * from board_book where bno=#{bno}
 	</select>
+	<update id="updateHit">
+		update board_book
+    	set
+    		hitsCnt = (select hitsCnt from board_book where bno = #{bno} ) + 1
+    	where bno = #{bno}
+	</update>
 	
 	<select id="allType" resultType="String">
 		select distinct(WRITETYPE) FROM board_book

@@ -10,10 +10,12 @@ a {
 .navbar-brand {
 	color: black;
 }
-img {
- width : 100; 
- height : 100;
+
+.detail_img {
+	width : 100; 
+	height : 100;
 }
+
 .navbar {
 	
 	background-color: #374840;
@@ -22,4 +24,26 @@ img {
 
 .container {
 	background-color: #c0c0c0;
+}
+
+.main_img{
+	width : 1080px; 
+	height : 500px;
+}
+.main_header{
+	background-color: #808040;
+}
+.main_footer{
+	background-color: #808040; 
+}
+
+.title {
+    position: relative;
+    left: 3rem;
+    width: 250px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 }

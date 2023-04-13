@@ -53,22 +53,19 @@
 			<th>내용</th>
 			<td colspan="5">
 				<textarea rows="10" name="content" class="form-control" readonly="readonly" >${board.content}</textarea>
-			</td>
-		</tr>
-		<tr>
-			<th>이미지</th>
-			<td colspan="5">
 				<c:forEach items="${attachList }" var="attach">
 					<c:if test="${attach.fileType eq 'IMAGE'}">
 						<div class="media border p-3 my-2">
 							<div class="media-body d-flex justify-content-between">
-								<img src="${contextPath}/imgDisplay?filePath=${attach.filePath}&fileName=${attach.fileName}" style="width:200px;">
+								<img class="detail_img" src="${contextPath}/imgDisplay?filePath=${attach.filePath}&fileName=${attach.fileName}" style="width:200px;">
 								<p>${attach.fileName}</p>
 							</div>
 						</div>			
 					</c:if>
 				</c:forEach>
 			</td>
+		</tr>
+		<tr>
 		</tr>
 		<tr>
 			<td colspan="6" class="text-center">

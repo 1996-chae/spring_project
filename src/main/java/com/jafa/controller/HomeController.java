@@ -24,11 +24,11 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) {
 		Criteria criteria = new Criteria(1,5);
-		Date date1 = testService.date1();
-		date1.setDate(date1.getDate()-1);
-		model.addAttribute("list",boardService.boardList(criteria));
-		
-		
+		model.addAttribute("list_day",boardService.boardList(criteria));
+		criteria.setSequence("hitsCnt");
+		model.addAttribute("list_hits",boardService.boardList(criteria));
+		criteria.setSequence("likeCnt");
+		model.addAttribute("list_like",boardService.boardList(criteria));
 		return "index";
 	}
 }

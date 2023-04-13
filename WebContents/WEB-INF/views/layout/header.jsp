@@ -26,7 +26,7 @@
 <script src="${contextPath}/resources/js/main.js"></script>
 
 
-<nav class="container">
+<nav class="container main_header">
 	<div class="text-center">
 		<a class="navbar-brand" href="${contextPath}">
 			<h1>서향림</h1>

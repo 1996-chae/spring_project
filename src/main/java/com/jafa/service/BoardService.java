@@ -42,7 +42,9 @@ public class BoardService {
 	}
 
 	// 게시판 상세 보기
+	@Transactional
 	public BoardVO detail(Long bno) {
+		boardRepository.updateHit(bno);
 		return boardRepository.detail(bno);
 	}
 

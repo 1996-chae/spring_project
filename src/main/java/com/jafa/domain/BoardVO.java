@@ -18,6 +18,7 @@ public class BoardVO {
 	private Long rno;
 	private String writeType;
 	private String title;
+	private String short_ti;
 	private String content;
 	private String id;
 	private String nickname;
