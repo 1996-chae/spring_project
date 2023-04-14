@@ -3,8 +3,41 @@
 <%@ include file="layout/header.jsp" %>
 
 <div class="container">
-	<div class="text-center">
-		<img class="main_img" src="${contextPath}/resources/images/b_bump.jpg">
+	<div id="demo" class="carousel slide" data-ride="carousel">
+		<ul class="carousel-indicators">
+			<li data-target="#demo" data-slide-to="0" class="active"></li>
+			<li data-target="#demo" data-slide-to="1"></li>
+			<li data-target="#demo" data-slide-to="2"></li>
+		</ul>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="${contextPath}/resources/images/b_bump.jpg" width="1100" height="500">
+				<div class="carousel-caption">
+					<h3>실내</h3>
+					<p>누구든지 할 수 있는 클라이밍 도전하세요!!</p>
+				</div>   
+			</div>
+			<div class="carousel-item">
+				<img src="${contextPath}/resources/images/이미지07.jpg" width="1100" height="500">
+				<div class="carousel-caption">
+					<h3>야외</h3>
+					<p>야외에서 즐기는 클라이밍을 경험하세요!</p>
+				</div>   
+			</div>
+			<div class="carousel-item">
+				<img src="${contextPath}/resources/images/이미지05.jpg" width="1100" height="500">
+				<div class="carousel-caption">
+					<h3>자연</h3>
+					<p>자연을 정복하세요!</p>
+				</div>   
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#demo" data-slide="prev">
+			<span class="carousel-control-prev-icon"></span>
+		</a>
+		<a class="carousel-control-next" href="#demo" data-slide="next">
+			<span class="carousel-control-next-icon"></span>
+		</a>
 	</div>
 	<div class="row">
 		<div class="col-sm-4">
@@ -93,18 +126,6 @@
 			</table>
 		</div>
 	</div>
-	<div>
-		<h1>1~9 숫자 야구 게임</h1>
-	    <p>게임을 시작하려면 아래의 버튼을 클릭하세요.</p>
-	    <form method="get" action="${contextPath}/game/baseball">
-			<button type="submit">게임 시작</button>
-	    </form>
-	</div>
 </div>
-
-<script>
-let loginOn = "${loginOn}"
-if(loginOn!='') alert(loginOn);
-</script>
 
 <%@ include file="layout/footer.jsp" %>

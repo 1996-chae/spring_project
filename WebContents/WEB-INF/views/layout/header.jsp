@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서  향  림</title>
+<title>서  향  림[클라이밍 커뮤니티]</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -30,7 +30,7 @@
 	<div class="text-center">
 		<a class="navbar-brand" href="${contextPath}">
 			<h1>서향림</h1>
-			<h6>커뮤니티 놀이 사이트</h6>
+			<h6>클라이밍 커뮤니티 사이트</h6>
 		</a>
 	</div>
 	<ul class="nav justify-content-end">
