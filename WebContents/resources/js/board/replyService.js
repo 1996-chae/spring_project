@@ -119,13 +119,27 @@ function replyListRender(replyList){
 	
 	let output = '';
 	for(let r of replyList){
+	
+		// 밀리초를 Date 객체로 변환
+		const dateObj = new Date(r.replyDate);
+		  
+		// 연도, 월, 일, 시간, 분, 초 값을 추출
+		const year = dateObj.getFullYear();
+		const month = dateObj.getMonth() + 1;
+		const day = dateObj.getDate();
+		const hour = dateObj.getHours();
+		const minute = dateObj.getMinutes();
+		const second = dateObj.getSeconds();
+		
 		output += `
 		<li class="list-group-item">
 			<div class="row">
 				<div class="col-8 mb-2">
 					<textarea class="form-control" readonly>${r.reply}</textarea>
 					<span class="badge badge-success">${r.nickname}</span>
-					<span class="badge badge-info">${r.replyDate}</span>
+					<span class="badge badge-info">
+						${year}.${month}.${day}  ${hour}:${minute}:${second}
+					</span>
 				</div>`
 			
 		if(r.id==id){

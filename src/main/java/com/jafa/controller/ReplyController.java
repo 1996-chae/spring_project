@@ -30,6 +30,7 @@ public class ReplyController {
 	@RequestMapping(value = "list", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<ReplyVO> replyList(Long bno) throws Exception {
+		System.out.println(replyService.replyList(bno));
 		return replyService.replyList(bno);
 	}
 	
