@@ -66,7 +66,7 @@ public class RootConfig {
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource =  
 							new ReloadableResourceBundleMessageSource(); 
-		messageSource.setBasenames("classpath:message/label");
+		messageSource.setBasenames("classpath:message/label","classpath:message/error");
 		messageSource.setDefaultEncoding("utf-8");
 		return messageSource;
 	}

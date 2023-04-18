@@ -78,7 +78,7 @@ $(function(){
 	$('.user_join').on('click',function(e){
 		e.preventDefault();
 		
-		if(checkList.nickname == true && checkList.id == true && $('input[name=pwd_check]').eq($('input[name=pwd]'))){
+		if(checkList.nickname == true && checkList.id == true){
 			let form = $('.join_form');
 			form.submit();
 		}

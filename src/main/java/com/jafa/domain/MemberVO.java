@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 @ToString
+
 public class MemberVO {
+	
 	private int mno; 
 	private String id; 
 	private String pwd;

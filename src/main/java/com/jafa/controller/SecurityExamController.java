@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.AuthListDTO;
 import com.jafa.domain.AuthVO;
+import com.jafa.domain.MemberDTO;
+import com.jafa.domain.MemberDetail;
 import com.jafa.domain.MemberGrade;
 import com.jafa.domain.MemberVO;
 import com.jafa.repository.TestRepository;
@@ -96,7 +100,8 @@ public class SecurityExamController {
 	// 회원가입폼
 	@PreAuthorize("isAnonymous()")
 	@GetMapping("/join")
-	public void join() {
+	public String join(MemberDTO dto) {
+		return "/member/join";
 	}
 	
 	@RequestMapping(value = "idCheck", method = RequestMethod.GET)
@@ -113,8 +118,13 @@ public class SecurityExamController {
 	
 	//회원가입처리
 	@PostMapping("/join")
-	public String join(MemberVO vo, RedirectAttributes rttr) {
-		memberService.join(vo);
+	public String join(@Valid MemberDTO dto, Errors errors, RedirectAttributes rttr) {
+		if(errors.hasErrors()) {
+			System.out.println("에러!!");
+			return "/member/join";
+		}
+//		memberService.join(vo);
+		System.out.println(dto);
 		return "redirect:/";
 	}
 	

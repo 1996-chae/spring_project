@@ -1,12 +1,10 @@
 @charset "UTF-8";
 
-body {background-color: white;}
-p {
-	color: #000040;
+body {
+	background-color: white;
 }
-a {
-	color: #000000;
-}
+
+
 .navbar-brand {
 	color: black;
 }
@@ -46,5 +44,4 @@ a {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
 }

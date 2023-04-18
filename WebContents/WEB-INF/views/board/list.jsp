@@ -55,7 +55,7 @@
 								[${b.replyCnt}]
 							</c:if>
 							<c:if test="${b.attachFileCnt > 0}">
-							<img alt="파일존재" src="${contextPath}/resources/images/imagefileicon.png" height="15" width="15">
+								<img alt="파일존재" src="${contextPath}/resources/images/imagefileicon.png" height="15" width="15">
 							</c:if>
 						 </a>
 					</td>
